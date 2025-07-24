@@ -9,10 +9,10 @@ The flow is built using **Apache Kafka** to enable decoupled, scalable streaming
 
 ```mermaid
 graph TD
-    A[Wikimedia RecentChange Stream] --> B[Producer App (Spring Boot)]
+    A[Wikimedia RecentChange Stream] --> B[Producer App]
     B -->|Produces JSON messages| C[Kafka Cluster]
-    C --> D[Consumer App (Spring Boot)]
-    D --> E[Logs data (currently no extra processing)]
+    C --> D[Consumer App]
+    D --> E[Logs data ]
 ```
 
 ---
@@ -48,6 +48,12 @@ graph TD
 
 - You need a running Kafka cluster (local or remote).
 - Configure `bootstrap.servers` in both applications' `application.yml` or `application.properties`.
+
+and you can setup Kafak using docker compose
+
+```sh
+docker-compose up -d
+```
 
 ---
 
