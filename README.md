@@ -1,6 +1,12 @@
 # Wikimedia Kafka Streaming Project
 
-This project implements an event-driven architecture to process real-time data from the [Wikimedia RecentChange Stream](https://stream.wikimedia.org/v2/stream/recentchange) using **Apache Kafka**. It consists of two Spring Boot applications: a **Producer App** that streams Wikimedia events to a Kafka topic (`wikimedia-stream`) and a **Consumer App** that processes these events, persists them to a PostgreSQL database, handles errors with a Dead Letter Queue (DLQ), and implements a retry mechanism for transient failures. The Kafka cluster, Zookeeper, PostgreSQL, and Kafdrop are managed via Docker Compose for easy setup.
+This project implements an event-driven architecture to process real-time data from the [Wikimedia RecentChange Stream](https://stream.wikimedia.org/v2/stream/recentchange) using **Apache Kafka**. 
+It consists of two Spring Boot applications: 
+1. a **Producer App** that streams Wikimedia events to a Kafka topic (`wikimedia-stream`)
+2. **Consumer App** that processes these events, persists them to a PostgreSQL database
+3. **Retrying Mechanism** that handles errors with a Dead Letter Queue (DLQ), and implements a retry mechanism for transient failures.
+
+The Kafka cluster, Zookeeper, PostgreSQL, and Kafdrop are managed via Docker Compose for easy setup.
 
 ---
 
