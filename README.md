@@ -15,7 +15,7 @@ graph TD
     C -->|Consumes| D[Consumer App<br>Spring Boot]
     D -->|Persists| E[PostgreSQL<br>wikimedia_db]
     D -->|Unprocessable Messages| F[Kafka DLQ<br>wikimedia-stream-dlq]
-    C -->|Monitoring| G[Kafdrop UI]
+    C -->|Monitoring| G[Kafdrop UI - Promethuses and Grafana]
     H[Zookeeper] --> C
 ```
 
