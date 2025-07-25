@@ -14,4 +14,11 @@ public class WikimediaTopicConfig {
                 .name("wikimedia-stream")
                 .build();
     }
+
+    @Bean
+    public NewTopic wikimediaDLQTopic(){
+        return TopicBuilder
+                .name("wikimedia-stream-dlq")
+                .build();
+    }
 }

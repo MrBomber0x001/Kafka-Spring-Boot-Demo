@@ -7,6 +7,10 @@ scrape_configs:
     static_configs:
       - targets: ['host.docker.internal:8081']
 
+  - job_name: 'kafka'
+    static_configs:
+      - targets: [ 'kafka:9999' ]
+
   - job_name: 'consumer-app'
     metrics_path: '/actuator/prometheus'
     static_configs:

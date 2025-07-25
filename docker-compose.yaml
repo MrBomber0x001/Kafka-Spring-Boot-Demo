@@ -18,12 +18,17 @@ services:
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092, PLAINTEXT_HOST://kafka:9093
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,PLAINTEXT_HOST://0.0.0.0:9093
+      KAFKA_JMX_PORT: 9999
+      KAFKA_JMX_HOSTNAME: kafka
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
     ports:
       - "9092:9092"
+      - "9093:9093"
+      - "9999:9999"
 
   # Optional service for a Kafka management UI like Kafdrop
   kafdrop:
@@ -32,7 +37,7 @@ services:
     depends_on:
       - kafka
     environment:
-      KAFKA_BROKERCONNECT: "kafka:9092"
+      KAFKA_BROKERCONNECT: "kafka:9093"
       JVM_OPTS: "-Xms32M -Xmx64M"
     ports:
       - "9000:9000"
@@ -50,17 +55,28 @@ services:
       - "9090:9090"
 
   grafana:
-    image: grafana/grafana:latest
-    container_name: grafana
-    depends_on:
+      image: grafana/grafana:latest
+      container_name: grafana
+      depends_on:
         - prometheus
-    environment:
+      environment:
         - GF_SECURITY_ADMIN_USER=admin
         - GF_SECURITY_ADMIN_PASSWORD=admin
-    volumes:
+      volumes:
         - grafana-storage:/var/lib/grafana
-    ports:
+      ports:
         - "3000:3000"
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres-wikimedia
+    environment:
+      POSTGRES_DB: wikimedia_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+
 
 volumes:
     grafana-storage:
