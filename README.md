@@ -8,6 +8,11 @@ This project implements an event-driven architecture to process real-time data f
 
 The architecture follows an event-driven design, leveraging Kafka for decoupled, scalable streaming. The consumer persists events to PostgreSQL, sends unprocessable messages to a DLQ (`wikimedia-stream-dlq`), and retries transient errors.
 
+High level overview
+
+![assets/diagram.png](assets/diagram.png)
+
+components flow
 ```mermaid
 graph TD
     A[Wikimedia RecentChange Stream<br>Server-Sent Events] -->|WebClient| B[Producer App<br>Spring Boot]
@@ -18,6 +23,7 @@ graph TD
     C -->|Monitoring| G[Kafdrop UI - Promethuses and Grafana]
     H[Zookeeper] --> C
 ```
+
 
 ## POC
 
