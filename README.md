@@ -26,25 +26,26 @@ List of topics:
 - consumer offsets -> topic related to consumers themselves (used to track offsets read)
 - wikimedia_stream -> main topic
 - wikimedia-stream-dlq -> dead letter queue in case message hasn't been successfully processed
-  ![img_1.png](img_1.png)
+
+![assets/img_1.png](assets/img_1.png)
 
 Grafana Dashboard for the Consumer/Producer apps
 
-![img_4.png](img_4.png)
+![assets/img_4.png](assets/img_4.png)
 
 Dead-letter queue topic messages
-![img.png](img.png)
+![assets/img.png](assets/img.png)
 
 messages from wikimedia-stream
-![img_5.png](img_5.png)
+![assets/img_5.png](assets/img_5.png)
 
 
 
 Consumer app logs
-![img_2.png](img_2.png)
+![assets/img_2.png](assets/img_2.png)
 
 producer app logs
-![img_3.png](img_3.png)
+![assets/img_3.png](assets/img_3.png)
 
 
 
